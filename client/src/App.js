@@ -7,7 +7,7 @@ const App = () => {
   const [userMessage, setUserMessage] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/messages")
+    axios.get("https://chatbot-kt7h.onrender.com/api/messages")
       .then((response) => setMessages(response.data))
       .catch((error) => console.error("Error fetching messages:", error));
   }, []);
@@ -15,7 +15,7 @@ const App = () => {
   const handleSendMessage = () => {
     if (!userMessage.trim()) return;
 
-    axios.post("http://localhost:5000/api/messages", { user_message: userMessage })
+    axios.post("https://chatbot-kt7h.onrender.com/api/messages", { user_message: userMessage })
       .then((response) => {
         setMessages((prevMessages) => [...prevMessages, response.data]);
         setUserMessage(""); 
@@ -24,7 +24,7 @@ const App = () => {
   };
 
   const handleDeleteMessage = (id) => {
-    axios.delete(`http://localhost:5000/api/messages/${id}`)
+    axios.delete(`https://chatbot-kt7h.onrender.com/api/messages/${id}`)
       .then(() => {
         setMessages((prevMessages) => prevMessages.filter((msg) => msg.id !== id));
       })
